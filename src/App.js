@@ -17,12 +17,10 @@ class App extends Component {
 	componentDidMount() {
     let list = [];
 
-    for (let i = 1; i < 26; i++) {
+    for (let i = 100; i < 126; i++) {
       fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
       .then(response => response.json())
       .then(json => {
-        console.log(json)
-
         let pkTypes= [];
 
         for (let t = 0; t < json.types.length; t++) {
@@ -89,5 +87,3 @@ class App extends Component {
 }
 
 export default App;
-
-            // <Filter />

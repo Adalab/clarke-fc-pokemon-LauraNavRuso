@@ -17,11 +17,47 @@ body {
 
 .results {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 40px;
-  padding: 50px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 60px;
+  padding: 80px;
+}
+
+@media all and (max-width: 1500px) {
+  .results {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media all and (max-width: 1000px) {
+  .results {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .results {
+    grid-template-columns: 1fr;
+  }
 }
 
 .pk-card {
   background-color: white;
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.pk-name {
+  font-weight: bold;
+}
+
+.types-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.pk-type-tag {
+  background-color: red;
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
 }

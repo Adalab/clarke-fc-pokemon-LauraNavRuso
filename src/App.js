@@ -58,15 +58,12 @@ class App extends Component {
           </section>
 
           <section className="results">Resultados
-            <PokemonCard />
 
-
-            <p className="api-pokemon">{this.state.pkInterestingData.savedId}</p>
-            <p className="api-pokemon">{this.state.pkInterestingData.savedName}</p>
-
-            <img src={this.state.pkInterestingData.savedSprite}  alt={`${this.state.pkInterestingData.savedName} fighting`}  />
-
-            <p className="api-pokemon">{this.state.pkInterestingData.savedTypes}</p>
+            <PokemonCard name={this.state.pkInterestingData.savedName}
+                        id={this.state.pkInterestingData.savedId}
+                        imgUrl={this.state.pkInterestingData.savedSprite}
+                        types={this.state.pkInterestingData.savedTypes}
+            />
 
           </section>
         </main>
@@ -76,3 +73,10 @@ class App extends Component {
 }
 
 export default App;
+
+// <p className="api-pokemon">{this.state.pkInterestingData.savedId}</p>
+// <p className="api-pokemon">{this.state.pkInterestingData.savedName}</p>
+//
+// <img src={this.state.pkInterestingData.savedSprite}  alt={`${this.state.pkInterestingData.savedName} fighting`}  />
+//
+// <p className="api-pokemon">{this.state.pkInterestingData.savedTypes}</p>

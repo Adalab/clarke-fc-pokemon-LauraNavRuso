@@ -16,10 +16,12 @@ body {
 }
 
 .results {
-  font-size: large;
-  background-color: #fabada;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  padding: 30px;
 }
 
-.api-pokemon {
-    background-color: green;
+.pk-card {
+  background-color: white;
 }

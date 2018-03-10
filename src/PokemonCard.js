@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import pikachuImg from'./pikachu.png';
-
 
 class PokemonCard extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="pk-card">
 
         <p className="api-pokemon">{this.props.id}</p>
         <p className="api-pokemon">{this.props.name}</p>
 
         <img src={this.props.imgUrl}  alt={`${this.props.name} fighting`}  />
 
-        <p className="api-pokemon">{this.props.types}</p>
-
-
+        <p className="api-pokemon">{this.props.types[0]}</p>
+        <p className="api-pokemon">{this.props.types[1]}</p>
+        
       </div>
     );
   }

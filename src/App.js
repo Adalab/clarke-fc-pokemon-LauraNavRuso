@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PokemonCard from './PokemonCard.js';
 
-
-
-
 class App extends Component {
   constructor(props){
 		super(props);
@@ -18,7 +15,7 @@ class App extends Component {
 	componentDidMount() {
     let list = [];
 
-    for (let i = 103; i < 106; i++) {
+    for (let i = 100; i < 125; i++) {
       fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
       .then(response => response.json())
       .then(json => {
@@ -48,10 +45,6 @@ class App extends Component {
          console.log('Ha sucedido un error: ' + error);
        });
      }
-
-         // this.setState({
-         //   pkInterestingData: list
-         // })
 	};
 
 
@@ -64,9 +57,11 @@ class App extends Component {
           <section className="filter">Filtrados
           </section>
 
-          <section className="results">Resultados
-
-            {this.state.pkInterestingData.map(x =>(
+          <section className="results">
+            {this.state.pkInterestingData.sort(function(a,b) {
+                return a.savedId - b.savedId;
+            })
+              .map(x =>(
                 <PokemonCard name={x.savedName}
                             id={x.savedId}
                             imgUrl={x.savedSprite}
@@ -82,23 +77,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-// {this.state.projectsForSpecificUser.map(x =>(
-//               <ProjectCard idProject={x._id} name={x.name} username={x.creator.username}
-//                 timesLiked={x.timesLiked}
-//                 timesDownloaded={x.timesDownloaded}
-//                 handleClickTimesLiked={this.handleClickTimesLiked}
-//               />
-//             ))}
-
-
-
-// {this.state.pkInterestingData.map(x =>(
-//     <PokemonCard name={x.savedName}
-//                 id={x.savedId}
-//                 imgUrl={x.savedSprite}
-//                 types={this.savedTypes}
-//     />
-// ))}

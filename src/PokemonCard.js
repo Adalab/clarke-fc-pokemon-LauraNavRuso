@@ -6,10 +6,6 @@ class PokemonCard extends Component {
   render() {
     return (
       <div className="App">
-        Soy un pokemon en concreto
-        <img src={pikachuImg} alt="pikachu"/>
-
-
 
         <p className="api-pokemon">{this.props.id}</p>
         <p className="api-pokemon">{this.props.name}</p>

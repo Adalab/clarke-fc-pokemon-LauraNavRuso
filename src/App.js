@@ -9,43 +9,50 @@ class App extends Component {
 		super(props);
 
 		this.state = {
-      pkInterestingData: {},
+      pkInterestingData: [],
 			lettersToFilter: ''
 		};
 	}
 
 
 	componentDidMount() {
-		fetch('https://pokeapi.co/api/v2/pokemon/102/')
-		.then(response => response.json())
-		.then(json => {
-      console.log(json)
+    let list = [];
 
-      let pkTypes= [];
+    for (let i = 103; i < 106; i++) {
+      fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
+      .then(response => response.json())
+      .then(json => {
+        console.log(json)
 
-      for (let t = 0; t < json.types.length; t++) {
-        let pkTypeToPush = json.types[t].type.name
-        pkTypes.push(pkTypeToPush)
-      }
+        let pkTypes= [];
+
+        for (let t = 0; t < json.types.length; t++) {
+          let pkTypeToPush = json.types[t].type.name
+          pkTypes.push(pkTypeToPush)
+        }
 
         let interestingDataToSave = {
           savedId: json.id,
           savedName: json.name,
           savedSprite: json.sprites.front_default,
           savedTypes: pkTypes
-        }
+         }
 
-			this.setState({
-        pkInterestingData: interestingDataToSave
-			})
-      ;
+         list.push(interestingDataToSave);
 
-		})
-    .catch(function(error){
-      console.log('Ha sucedido un error: ' + error);
-    })
+         this.setState({
+           pkInterestingData: this.state.pkInterestingData.concat([interestingDataToSave])
+         })
+       })
+       .catch(function(error){
+         console.log('Ha sucedido un error: ' + error);
+       });
+     }
+
+         // this.setState({
+         //   pkInterestingData: list
+         // })
 	};
-
 
 
   render() {
@@ -59,11 +66,13 @@ class App extends Component {
 
           <section className="results">Resultados
 
-            <PokemonCard name={this.state.pkInterestingData.savedName}
-                        id={this.state.pkInterestingData.savedId}
-                        imgUrl={this.state.pkInterestingData.savedSprite}
-                        types={this.state.pkInterestingData.savedTypes}
-            />
+            {this.state.pkInterestingData.map(x =>(
+                <PokemonCard name={x.savedName}
+                            id={x.savedId}
+                            imgUrl={x.savedSprite}
+                            types={x.savedTypes}
+                />
+            ))}
 
           </section>
         </main>
@@ -74,9 +83,22 @@ class App extends Component {
 
 export default App;
 
-// <p className="api-pokemon">{this.state.pkInterestingData.savedId}</p>
-// <p className="api-pokemon">{this.state.pkInterestingData.savedName}</p>
-//
-// <img src={this.state.pkInterestingData.savedSprite}  alt={`${this.state.pkInterestingData.savedName} fighting`}  />
-//
-// <p className="api-pokemon">{this.state.pkInterestingData.savedTypes}</p>
+
+
+// {this.state.projectsForSpecificUser.map(x =>(
+//               <ProjectCard idProject={x._id} name={x.name} username={x.creator.username}
+//                 timesLiked={x.timesLiked}
+//                 timesDownloaded={x.timesDownloaded}
+//                 handleClickTimesLiked={this.handleClickTimesLiked}
+//               />
+//             ))}
+
+
+
+// {this.state.pkInterestingData.map(x =>(
+//     <PokemonCard name={x.savedName}
+//                 id={x.savedId}
+//                 imgUrl={x.savedSprite}
+//                 types={this.savedTypes}
+//     />
+// ))}

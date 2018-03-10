@@ -9,13 +9,15 @@ class App extends Component {
       pkInterestingData: [],
 			lettersToFilter: ''
 		};
+
+    this.onChangeInputListener = this.onChangeInputListener.bind(this);
 	}
 
 
 	componentDidMount() {
     let list = [];
 
-    for (let i = 100; i < 125; i++) {
+    for (let i = 1; i < 26; i++) {
       fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
       .then(response => response.json())
       .then(json => {
@@ -48,19 +50,29 @@ class App extends Component {
 	};
 
 
+  onChangeInputListener = (event) => {
+		this.setState({
+			lettersToFilter: event.target.value
+		});
+	};
+
+
   render() {
     return (
       <div className="App">
         <h1>Mi Pokedex favorita
         </h1>
         <main>
-          <section className="filter">Filtrados
+          <section className="filter">
+            <label>Filtra los pokemon por letras contenidas en su nombre</label>
+            <input className="letters-to-seek-input" type="text" placeholder="Letra(s) a buscar" onChange= { this.onChangeInputListener }></input>
           </section>
 
           <section className="results">
             {this.state.pkInterestingData.sort(function(a,b) {
                 return a.savedId - b.savedId;
             })
+              .filter(x => (x.savedName.toLowerCase().includes(this.state.lettersToFilter.toLowerCase())))
               .map(x =>(
                 <PokemonCard name={x.savedName}
                             id={x.savedId}
@@ -77,3 +89,5 @@ class App extends Component {
 }
 
 export default App;
+
+            // <Filter />

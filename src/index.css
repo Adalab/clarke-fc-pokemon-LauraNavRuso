@@ -18,8 +18,8 @@ body {
 .results {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 20px;
-  padding: 30px;
+  grid-gap: 40px;
+  padding: 50px;
 }
 
 .pk-card {

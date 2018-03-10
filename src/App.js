@@ -9,8 +9,7 @@ class App extends Component {
 		super(props);
 
 		this.state = {
-			pokemonData: {},
-      interestingData: {},
+      pkInterestingData: {},
 			lettersToFilter: ''
 		};
 	}
@@ -37,8 +36,7 @@ class App extends Component {
         }
 
 			this.setState({
-				pokemonData: json,
-        interestingData: interestingDataToSave
+        pkInterestingData: interestingDataToSave
 			})
       ;
 
@@ -63,12 +61,12 @@ class App extends Component {
             <PokemonCard />
 
 
-            <p className="api-pokemon">{this.state.interestingData.savedId}</p>
-            <p className="api-pokemon">{this.state.interestingData.savedName}</p>
+            <p className="api-pokemon">{this.state.pkInterestingData.savedId}</p>
+            <p className="api-pokemon">{this.state.pkInterestingData.savedName}</p>
 
-            <img src={this.state.interestingData.savedSprite}  alt={`${this.state.interestingData.savedName} fighting`}  />
+            <img src={this.state.pkInterestingData.savedSprite}  alt={`${this.state.pkInterestingData.savedName} fighting`}  />
 
-            <p className="api-pokemon">{this.state.interestingData.savedTypes}</p>
+            <p className="api-pokemon">{this.state.pkInterestingData.savedTypes}</p>
 
           </section>
         </main>

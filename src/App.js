@@ -17,16 +17,23 @@ class App extends Component {
 
 
 	componentDidMount() {
-		fetch('https://pokeapi.co/api/v2/pokemon/60/')
+		fetch('https://pokeapi.co/api/v2/pokemon/102/')
 		.then(response => response.json())
 		.then(json => {
       console.log(json)
+
+      let pkTypes= [];
+
+      for (let t = 0; t < json.types.length; t++) {
+        let pkTypeToPush = json.types[t].type.name
+        pkTypes.push(pkTypeToPush)
+      }
 
         let interestingDataToSave = {
           savedId: json.id,
           savedName: json.name,
           savedSprite: json.sprites.front_default,
-          savedTypes: json.types[0].type.name
+          savedTypes: pkTypes
         }
 
 			this.setState({
@@ -58,7 +65,9 @@ class App extends Component {
 
             <p className="api-pokemon">{this.state.interestingData.savedId}</p>
             <p className="api-pokemon">{this.state.interestingData.savedName}</p>
-            <p className="api-pokemon">{this.state.interestingData.savedSprite}</p>
+
+            <img src={this.state.interestingData.savedSprite}  alt={`${this.state.interestingData.savedName} fighting`}  />
+
             <p className="api-pokemon">{this.state.interestingData.savedTypes}</p>
 
           </section>
@@ -69,31 +78,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-            // <p className="api-pokemon">{this.state.pokemonData.map(this.getType)}</p>
-
-
-      // <p className="api-pokemon">{this.state.pokemonData.types.type.name}</p>
-
-          // <p className="api-pokemon">{this.state.pokemonData.sprites.front_default}</p>
-
-
-          // getType(x) {
-          //
-          //   let hola = x.sprites.front_default
-          //   return (
-          //     hola
-          //     <Row
-          //        key={x.id}
-          //        contact={contact}
-          //        columns={this.props.children} />
-          //
-          //   );
-          // };
-
-          // <p className="api-pokemon">{this.state.interestingData}</p>
-          //
-          // <p className="api-pokemon">{this.state.interestingData[0]}</p>
-          //
-          // <p className="api-pokemon">{this.state.interestingData[1]}</p>

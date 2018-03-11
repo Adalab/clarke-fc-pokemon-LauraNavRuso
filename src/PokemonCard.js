@@ -2,19 +2,29 @@ import React, { Component } from 'react';
 import TypeTag from './TypeTag.js';
 
 class PokemonCard extends Component {
+
   render() {
+    function capitalizeFirstLetter(s) {
+        return s[0].toUpperCase() + s.slice(1);
+    }
+
+    let namePartiallyCapitalized = capitalizeFirstLetter(this.props.name);
+
     return (
       <div className="pk-card">
+
         <p className="pk-id">{this.props.id}</p>
-        <p className="pk-name">{this.props.name}</p>
+        <p className="pk-name">{namePartiallyCapitalized}</p>
 
-        <img src={this.props.imgUrl}  alt={`${this.props.name} fighting`}  />
+        <img className="pk-img" src={this.props.imgUrl}  alt={`${this.props.name} fighting`}  />
 
-        <div className="types-container">
+        <ul className="types-container">
           {this.props.types.map(x =>(
-              <TypeTag type={x} />
+              <TypeTag type={x}
+                       key={x}
+              />
           ))}
-        </div>
+        </ul>
       </div>
     );
   }

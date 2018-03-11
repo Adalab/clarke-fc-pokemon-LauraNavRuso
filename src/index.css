@@ -13,6 +13,11 @@ body {
 .filter {
   font-size: large;
   background-color: red;
+  padding: 20px;
+}
+
+.filter-label-to-input {
+  padding-right: 100px;
 }
 
 .results {
@@ -34,7 +39,7 @@ body {
   }
 }
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 700px) {
   .results {
     grid-template-columns: 1fr;
   }
@@ -48,16 +53,93 @@ body {
 
 .pk-name {
   font-weight: bold;
+  font-size: 20px;
+}
+
+.pk-img {
+  width: 120px;
 }
 
 .types-container {
   display: flex;
   justify-content: space-around;
+  padding-left: 0;
 }
 
 .pk-type-tag {
-  background-color: red;
   color: white;
   padding: 8px;
   border-radius: 8px;
+}
+
+.pk-type-tag-bug {
+  background-color: rgb(151, 165, 29);
+}
+
+.pk-type-tag-dark {
+  background-color: rgb(100, 78, 64);
+}
+
+.pk-type-tag-dragon {
+  background-color: rgb(94, 29, 247);
+}
+
+.pk-type-tag-electric {
+  background-color: rgb(246, 201, 19);
+}
+
+.pk-type-tag-fairy {
+  background-color: rgb(232, 120, 144);
+}
+
+.pk-type-tag-flying {
+  background-color: rgb(142, 111, 235);
+}
+
+.pk-type-tag-ice {
+  background-color: rgb(126, 206, 206);
+}
+
+.pk-type-tag-fighting {
+  background-color: rgb(174, 42, 36);
+}
+
+.pk-type-tag-fire {
+  background-color: rgb(237, 109, 18);
+}
+
+.pk-type-tag-ghost {
+  background-color: rgb(100, 78, 136);
+}
+
+.pk-type-tag-grass {
+  background-color: rgb(105, 194, 61);
+}
+
+.pk-type-tag-ground {
+  background-color: rgb(219, 181, 77);
+}
+
+.pk-type-tag-normal {
+  background-color: rgb(156, 156, 99);
+}
+
+.pk-type-tag-poison {
+  background-color: rgb(146, 58, 146);
+}
+
+.pk-type-tag-psychic {
+  background-color: rgb(247, 54, 112);
+}
+
+.pk-type-tag-rock {
+  background-color: rgb(164, 143, 50);
+}
+
+.pk-type-tag-steel {
+  background-color: rgb(160, 160, 192);
+}
+
+.pk-type-tag-water {
+  background-color: rgb(69, 120, 237);
 }

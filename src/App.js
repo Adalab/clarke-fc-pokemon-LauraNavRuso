@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PokemonCard from './PokemonCard.js';
+import Filter from './Filter.js';
 
 class App extends Component {
   constructor(props){
@@ -17,7 +18,7 @@ class App extends Component {
 	componentDidMount() {
     let list = [];
 
-    for (let i = 100; i < 126; i++) {
+    for (let i = 200; i < 226; i++) {
       fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
       .then(response => response.json())
       .then(json => {
@@ -61,10 +62,7 @@ class App extends Component {
         <h1>Mi Pokedex favorita
         </h1>
         <main>
-          <section className="filter">
-            <label>Filtra los pokemon por letras contenidas en su nombre</label>
-            <input className="letters-to-seek-input" type="text" placeholder="Letra(s) a buscar" onChange= { this.onChangeInputListener }></input>
-          </section>
+          <Filter onChangeInputListener = {this.onChangeInputListener} />
 
           <section className="results">
             {this.state.pkInterestingData.sort(function(a,b) {
@@ -76,6 +74,7 @@ class App extends Component {
                             id={x.savedId}
                             imgUrl={x.savedSprite}
                             types={x.savedTypes}
+                            key={x.savedId}
                 />
             ))}
 

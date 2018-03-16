@@ -19,7 +19,15 @@ class PokemonCard extends Component {
         <p className="pk-height">Height: {this.props.height}</p>
         <p className="pk-weight">Weight: {this.props.weight}</p>
 
-        <img className="pk-img" src={this.props.imgUrl}  alt={`${this.props.name} fighting`}  />
+        <img className="pk-img" src={this.props.imgUrlFD} alt="" />
+
+        <img className="pk-img" src={this.props.imgUrl} alt="" />
+        <img className="pk-img" src={this.props.imgUrlFS} alt="" />
+        <img className="pk-img" src={this.props.imgUrlFF} alt="" />
+        <img className="pk-img" src={this.props.imgUrlFSF} alt="" />
+        <img className="pk-img" src={this.props.imgUrlBD} alt="" />
+        <img className="pk-img" src={this.props.imgUrlBS} alt="" />
+        <img className="pk-img" src={this.props.imgUrlBSF} alt="" />
 
         <ul className="types-container">
           {this.props.types.map(x =>(

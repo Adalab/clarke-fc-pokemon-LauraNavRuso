@@ -34,7 +34,14 @@ class App extends Component {
           savedName: json.name,
           savedHeight: json.height,
           savedWeight: json.weight,
-          savedSprite: json.sprites.front_default,
+          savedSpriteFD: json.sprites.front_default,
+          savedSpriteFS: json.sprites.front_shiny,
+          savedSpriteFF: json.sprites.front_female,
+          savedSpriteFSF: json.sprites.front_shiny_female,
+          savedSpriteBD: json.sprites.back_default,
+          savedSpriteBS: json.sprites.back_shiny,
+          savedSpriteBF: json.sprites.back_female,
+          savedSpriteBSF: json.sprites.back_shiny_female,
           savedTypes: pkTypes
          }
 
@@ -72,13 +79,20 @@ class App extends Component {
             })
               .filter(x => (x.savedName.toLowerCase().includes(this.state.lettersToFilter.toLowerCase())))
               .map(x =>(
-                <PokemonCard name={x.savedName}
+                <PokemonCard key={x.savedId}
+                            name={x.savedName}
                             id={x.savedId}
                             height={x.savedHeight}
                             weight={x.savedWeight}
-                            imgUrl={x.savedSprite}
+                            imgUrlFD={x.savedSpriteFD}
+                            imgUrlFS={x.savedSpriteFS}
+                            imgUrlFF={x.savedSpriteFF}
+                            imgUrlFSF={x.savedSpriteFSF}
+                            imgUrlBD={x.savedSpriteBD}
+                            imgUrlBS={x.savedSpriteBS}
+                            imgUrlBF={x.savedSpriteBF}
+                            imgUrlBSF={x.savedSpriteBSF}
                             types={x.savedTypes}
-                            key={x.savedId}
                 />
             ))}
 

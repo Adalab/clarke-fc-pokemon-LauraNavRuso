@@ -23,10 +23,16 @@ class App extends Component {
       .then(response => response.json())
       .then(json => {
         let pkTypes= [];
+        let pkAbilities= [];
 
         for (let t = 0; t < json.types.length; t++) {
           let pkTypeToPush = json.types[t].type.name
           pkTypes.push(pkTypeToPush)
+        }
+
+        for (let j = 0; j < json.abilities.length; j++) {
+          let pkAbilityToPush = json.abilities[j].ability.name
+          pkAbilities.push(pkAbilityToPush)
         }
 
         let interestingDataToSave = {
@@ -42,7 +48,8 @@ class App extends Component {
           savedSpriteBS: json.sprites.back_shiny,
           savedSpriteBF: json.sprites.back_female,
           savedSpriteBSF: json.sprites.back_shiny_female,
-          savedTypes: pkTypes
+          savedTypes: pkTypes,
+          savedAbilities: pkAbilities
          }
 
          list.push(interestingDataToSave);
@@ -93,6 +100,7 @@ class App extends Component {
                             imgUrlBF={x.savedSpriteBF}
                             imgUrlBSF={x.savedSpriteBSF}
                             types={x.savedTypes}
+                            abilities={x.savedAbilities}
                 />
             ))}
 

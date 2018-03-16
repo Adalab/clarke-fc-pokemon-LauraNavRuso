@@ -29,6 +29,12 @@ class PokemonCard extends Component {
         <img className="pk-img" src={this.props.imgUrlBS} alt="" />
         <img className="pk-img" src={this.props.imgUrlBSF} alt="" />
 
+        <ul className="abilities-container">Abilities:
+          {this.props.abilities.map(x =>(
+               <li> {x} </li>
+          ))}
+        </ul>
+
         <ul className="types-container">
           {this.props.types.map(x =>(
               <TypeTag type={x}

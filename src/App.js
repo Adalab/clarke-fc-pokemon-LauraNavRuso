@@ -16,9 +16,9 @@ class App extends Component {
 
 
 	componentDidMount() {
-    let list = [];
 
     for (let i = 200; i < 226; i++) {
+
       fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
       .then(response => response.json())
       .then(json => {
@@ -52,16 +52,29 @@ class App extends Component {
           savedAbilities: pkAbilities
          }
 
-         list.push(interestingDataToSave);
+         fetch(`https://pokeapi.co/api/v2/pokemon-species/${i}/`)
+         .then(response => response.json())
+         .then(json => {
 
-         this.setState({
-           pkInterestingData: this.state.pkInterestingData.concat([interestingDataToSave])
-         })
-       })
-       .catch(function(error){
+           if (json.evolves_from_species == null) {
+
+             interestingDataToSave.savedPreEv = "huevo";
+           }
+           else {
+             interestingDataToSave.savedPreEv = json.evolves_from_species.name;
+           }
+
+          this.setState({
+            pkInterestingData: this.state.pkInterestingData.concat([interestingDataToSave])
+          })
+        });
+      })
+      .catch(function(error){
          console.log('Ha sucedido un error: ' + error);
        });
-     }
+
+
+    }
 	};
 
 
@@ -101,6 +114,7 @@ class App extends Component {
                             imgUrlBSF={x.savedSpriteBSF}
                             types={x.savedTypes}
                             abilities={x.savedAbilities}
+                            preEv={x.savedPreEv}
                 />
             ))}
 
@@ -112,3 +126,15 @@ class App extends Component {
 }
 
 export default App;
+
+// if (json.evolves_from_species = null) {
+//   debugger
+//   let interestingEvDataToSave = {
+//         savedPreEv: "huevo",
+//       }
+// }
+// else {
+//   let interestingEvDataToSave = {
+//         savedPreEv: json.evolves_from_species.name,
+//       }
+// }

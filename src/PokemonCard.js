@@ -18,9 +18,9 @@ class PokemonCard extends Component {
 
         <p className="pk-height">Height: {this.props.height}</p>
         <p className="pk-weight">Weight: {this.props.weight}</p>
+        <p className="pk-preEv">Evoluciona de: {this.props.preEv}</p>  
 
         <img className="pk-img" src={this.props.imgUrlFD} alt="" />
-
         <img className="pk-img" src={this.props.imgUrl} alt="" />
         <img className="pk-img" src={this.props.imgUrlFS} alt="" />
         <img className="pk-img" src={this.props.imgUrlFF} alt="" />

@@ -32,6 +32,8 @@ class App extends Component {
         let interestingDataToSave = {
           savedId: json.id,
           savedName: json.name,
+          savedHeight: json.height,
+          savedWeight: json.weight,
           savedSprite: json.sprites.front_default,
           savedTypes: pkTypes
          }
@@ -72,6 +74,8 @@ class App extends Component {
               .map(x =>(
                 <PokemonCard name={x.savedName}
                             id={x.savedId}
+                            height={x.savedHeight}
+                            weight={x.savedWeight}
                             imgUrl={x.savedSprite}
                             types={x.savedTypes}
                             key={x.savedId}

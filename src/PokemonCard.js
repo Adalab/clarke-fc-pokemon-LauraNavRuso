@@ -16,6 +16,9 @@ class PokemonCard extends Component {
         <p className="pk-id">{this.props.id}</p>
         <p className="pk-name">{namePartiallyCapitalized}</p>
 
+        <p className="pk-height">Height: {this.props.height}</p>
+        <p className="pk-weight">Weight: {this.props.weight}</p>
+
         <img className="pk-img" src={this.props.imgUrl}  alt={`${this.props.name} fighting`}  />
 
         <ul className="types-container">

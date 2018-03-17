@@ -17,7 +17,7 @@ class App extends Component {
 
 	componentDidMount() {
 
-    for (let i = 300; i < 326; i++) {
+    for (let i = 300; i < 303; i++) {
 
       fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
       .then(response => response.json())
@@ -57,26 +57,33 @@ class App extends Component {
          .then(json => {
 
            if (json.evolves_from_species == null) {
-
              interestingDataToSave.savedPreEv = "huevo";
            }
            else {
              interestingDataToSave.savedPreEv = json.evolves_from_species.name;
            }
 
-          let evChainUrl = json.evolution_chain.url;
-
-           fetch(evChainUrl)
+           fetch(json.evolution_chain.url)
            .then(response => response.json())
            .then(json => {
-              interestingDataToSave.patata = json.chain.species.name;
-              console.log(interestingDataToSave.patata);
+              let evChain = [];
+              let evData = json.chain;
+
+              do {
+
+                evChain.push(evData.species.name);
+
+                evData = evData['evolves_to'][0];
+              }
+
+             while (!!evData && evData.hasOwnProperty('evolves_to'));
+
+             interestingDataToSave.savedEvChain = evChain;
+
+             this.setState({
+               pkInterestingData: this.state.pkInterestingData.concat([interestingDataToSave])
+             })
            })
-
-
-          this.setState({
-            pkInterestingData: this.state.pkInterestingData.concat([interestingDataToSave])
-          })
         });
       })
       .catch(function(error){
@@ -124,10 +131,9 @@ class App extends Component {
                             types={x.savedTypes}
                             abilities={x.savedAbilities}
                             preEv={x.savedPreEv}
-                            hola={x.patata}
+                            evChain={x.savedEvChain}
                 />
             ))}
-
           </section>
         </main>
       </div>
@@ -139,12 +145,22 @@ export default App;
 
 
 
-
-// let pkEvolutions= [];
+// var evoChain = [];
+// var evoData = response.data.chain;
 //
-// for (let e = 0; t < json..length; e++) {
-//   let pkEvToPush = json.types[e].type.name
-//   pkTypes.push(pkTypeToPush)
-// }
+// do {
+//   var evoDetails = evoData['evolution_details'][0];
+//
+//   evoChain.push({
+//     "species_name": evoData.species.name,
+//     "min_level": !evoDetails ? 1 : evoDetails.min_level,
+//     "trigger_name": !evoDetails ? null : evoDetails.trigger.name,
+//     "item": !evoDetails ? null : evoDetails.item
+//   });
+//
+//   evoData = evoData['evolves_to'][0];
+// } while (!!evoData && evoData.hasOwnProperty('evolves_to'));
 
-// {mode: 'no-cors'}
+
+
+      // let evChainUrl = json.evolution_chain.url;

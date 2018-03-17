@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PokemonCard from './PokemonCard.js';
 import Filter from './Filter.js';
+import PkDetailCard from './PkDetailCard.js';
 
 class App extends Component {
   constructor(props){
@@ -114,7 +115,7 @@ class App extends Component {
                 return a.savedId - b.savedId;
             })
               .filter(x => (x.savedName.toLowerCase().includes(this.state.lettersToFilter.toLowerCase())))
-              .map(x =>(
+              .map(x =>(<div>
                 <PokemonCard key={x.savedId}
                             name={x.savedName}
                             id={x.savedId}
@@ -133,6 +134,12 @@ class App extends Component {
                             preEv={x.savedPreEv}
                             evChain={x.savedEvChain}
                 />
+                <PkDetailCard name={x.savedName}
+                              height={x.savedHeight}
+                              weight={x.savedWeight}
+
+                />
+                </div>
             ))}
           </section>
         </main>

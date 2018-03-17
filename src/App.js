@@ -17,7 +17,7 @@ class App extends Component {
 
 	componentDidMount() {
 
-    for (let i = 200; i < 226; i++) {
+    for (let i = 300; i < 326; i++) {
 
       fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
       .then(response => response.json())
@@ -64,6 +64,16 @@ class App extends Component {
              interestingDataToSave.savedPreEv = json.evolves_from_species.name;
            }
 
+          let evChainUrl = json.evolution_chain.url;
+
+           fetch(evChainUrl)
+           .then(response => response.json())
+           .then(json => {
+              interestingDataToSave.patata = json.chain.species.name;
+              console.log(interestingDataToSave.patata);
+           })
+
+
           this.setState({
             pkInterestingData: this.state.pkInterestingData.concat([interestingDataToSave])
           })
@@ -72,7 +82,6 @@ class App extends Component {
       .catch(function(error){
          console.log('Ha sucedido un error: ' + error);
        });
-
 
     }
 	};
@@ -115,6 +124,7 @@ class App extends Component {
                             types={x.savedTypes}
                             abilities={x.savedAbilities}
                             preEv={x.savedPreEv}
+                            hola={x.patata}
                 />
             ))}
 
@@ -127,14 +137,14 @@ class App extends Component {
 
 export default App;
 
-// if (json.evolves_from_species = null) {
-//   debugger
-//   let interestingEvDataToSave = {
-//         savedPreEv: "huevo",
-//       }
+
+
+
+// let pkEvolutions= [];
+//
+// for (let e = 0; t < json..length; e++) {
+//   let pkEvToPush = json.types[e].type.name
+//   pkTypes.push(pkTypeToPush)
 // }
-// else {
-//   let interestingEvDataToSave = {
-//         savedPreEv: json.evolves_from_species.name,
-//       }
-// }
+
+// {mode: 'no-cors'}

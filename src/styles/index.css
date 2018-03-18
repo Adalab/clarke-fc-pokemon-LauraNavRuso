@@ -70,6 +70,7 @@ body {
   color: white;
   padding: 8px;
   border-radius: 8px;
+  list-style-type: none
 }
 
 .pk-type-tag-bug {
@@ -142,4 +143,18 @@ body {
 
 .pk-type-tag-water {
   background-color: rgb(69, 120, 237);
+}
+
+.pkDetailCard-generalContainer {
+  background-color: rgba(61, 170, 253, 0.5);
+  border-radius: 20px;
+  padding: 30px;
+  /* display: none; */
+}
+
+.pk-weight,
+.pk-height,
+.abilities-container,
+.evolutionChain-container {
+  text-align: left;
 }

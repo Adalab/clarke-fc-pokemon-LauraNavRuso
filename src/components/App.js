@@ -18,7 +18,7 @@ class App extends Component {
 
 	componentDidMount() {
 
-    for (let i = 300; i < 303; i++) {
+    for (let i = 500; i < 524; i++) {
 
       fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
       .then(response => response.json())
@@ -94,13 +94,11 @@ class App extends Component {
     }
 	};
 
-
   onChangeInputListener = (event) => {
 		this.setState({
 			lettersToFilter: event.target.value
 		});
 	};
-
 
   render() {
     return (
@@ -115,8 +113,8 @@ class App extends Component {
                 return a.savedId - b.savedId;
             })
               .filter(x => (x.savedName.toLowerCase().includes(this.state.lettersToFilter.toLowerCase())))
-              .map(x =>(<div>
-                <PokemonCard key={x.savedId}
+              .map(x =>(<div className={`${x.savedId}`} >
+                <PokemonCard key={`PokemonCard${x.savedId}`}
                             name={x.savedName}
                             id={x.savedId}
                             height={x.savedHeight}
@@ -134,10 +132,23 @@ class App extends Component {
                             preEv={x.savedPreEv}
                             evChain={x.savedEvChain}
                 />
-                <PkDetailCard name={x.savedName}
+                <PkDetailCard key={`PkDetailCard${x.savedId}`}
+                              name={x.savedName}
+                              id={x.savedId}
                               height={x.savedHeight}
                               weight={x.savedWeight}
-
+                              imgUrlFD={x.savedSpriteFD}
+                              imgUrlFS={x.savedSpriteFS}
+                              imgUrlFF={x.savedSpriteFF}
+                              imgUrlFSF={x.savedSpriteFSF}
+                              imgUrlBD={x.savedSpriteBD}
+                              imgUrlBS={x.savedSpriteBS}
+                              imgUrlBF={x.savedSpriteBF}
+                              imgUrlBSF={x.savedSpriteBSF}
+                              types={x.savedTypes}
+                              abilities={x.savedAbilities}
+                              preEv={x.savedPreEv}
+                              evChain={x.savedEvChain}
                 />
                 </div>
             ))}
